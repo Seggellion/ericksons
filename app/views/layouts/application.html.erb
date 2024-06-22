@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ericksons</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+      <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
+
+      <%= stylesheet_link_tag 'https://unpkg.com/trix@2.1.1/dist/trix.css' %>
+  <%#= javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/trix/1.3.1/trix.js' %>
+  </head>
+
+  <body>
+
+  <%= render '/layouts/header' %>
+<style>
+@font-face {
+  font-family: 'Alegreya';
+  src: url('<%= asset_path('alegreya/Alegreya-Regular.ttf') %>') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Alegreya';
+  src: url('<%= asset_path('alegreya/Alegreya-Bold.ttf') %>') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+</style>
+  <main class="p-8">
+
+    <!-- First Section -->
+    <section class="flex m-12">
+      <div class="w-4/5 p-4">
+        <%= yield %>
+
+
+      </div>
+      <div class="w-1/5 p-4">
+      <div style="background-color:#d6d6d6;" class="p-4">
+        <h2 class="text-xl font-bold">IMPORTANT</h2>
+        <p>
+Do not use hand sanitizer or any alcohol based cleaner on your ocular prosthesis, as it will crack the acrylic!</p>
+      </div>
+      </div>
+    </section>
+  
+
+    <!-- Second Section -->
+    <section class="m-12">
+    <h2 class="text-xl font-bold mb-6">Our Artificial Eyes and Facial prosthetics Services</h2>
+<div class="grid grid-cols-3 gap-4">
+      <div>
+      <%= image_tag 'ericksons-placeholder.jpg', alt: 'Placeholder', class: 'w-full' %>
+        <h3 class="text-lg font-bold text-center">Artificial Eye</h3>
+      </div>
+      <div>
+      <%= image_tag 'ericksons-placeholder.jpg', alt: 'Placeholder', class: 'w-full' %>
+        <h3 class="text-lg font-bold text-center">Scleral Shell</h3>
+      </div>
+      <div>
+      <%= image_tag 'ericksons-placeholder.jpg', alt: 'Placeholder', class: 'w-full' %>
+        <h3 class="text-lg font-bold text-center">Eyes for Children</h3>
+      </div>
+      <div>
+      <%= image_tag 'ericksons-placeholder.jpg', alt: 'Placeholder', class: 'w-full' %>
+        <h3 class="text-lg font-bold text-center">What to Expect</h3>
+      </div>
+      <div>
+      <%= image_tag 'ericksons-placeholder.jpg', alt: 'Placeholder', class: 'w-full' %>
+        <h3 class="text-lg font-bold text-center">Ears</h3>
+      </div>
+      <div>
+      <%= image_tag 'ericksons-placeholder.jpg', alt: 'Placeholder', class: 'w-full' %>
+        <h3 class="text-lg font-bold text-center">Orbitals</h3>
+      </div>
+      </div>
+    </section>
+<%= render '/home/testimonials' %>
+  </main>
+  
+  <%= render '/layouts/footer' %>
+
+  </body>
+</html>

@@ -1,0 +1,17 @@
+<!-- Third Section -->
+<section class="my-8">
+  <h2 class="text-xl font-bold">Testimonials</h2>
+  <div data-controller="slider" class="relative overflow-hidden">
+    <div data-slider-target="container" class="flex transition-transform duration-500 ease-in-out">
+      <%# @testimonials.each do |testimonial| %>
+        <div class="testimonial-slide bg-gray-100 p-4 my-4 flex-none w-full">
+          <p> Testimonial content<%#= testimonial.content %></p>
+          <p>- Testimonial customer<%#= testimonial.customer %></p>
+        </div>
+      <%# end %>
+    </div>
+    <!-- Navigation Buttons -->
+    <button data-action="click->slider#previous" class="absolute left-0 top-1/2 transform -translate-y-1/2 p-2 bg-gray-800 text-white rounded-full">&lt;</button>
+    <button data-action="click->slider#next" class="absolute right-0 top-1/2 transform -translate-y-1/2 p-2 bg-gray-800 text-white rounded-full">&gt;</button>
+  </div>
+</section>

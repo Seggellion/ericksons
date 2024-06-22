@@ -1,0 +1,15 @@
+<div class="w-64 bg-blue-900 text-white min-h-screen">
+  <div class="p-6">
+    <h1 class="text-3xl font-bold mb-4">Admin Panel</h1>
+    <nav class="space-y-2">
+      <%= link_to 'Dashboard', admin_root_path, class: 'block py-2 px-4 hover:bg-blue-700' %>
+      <%= link_to 'Pages', admin_pages_path, class: 'block py-2 px-4 hover:bg-blue-700' %>
+      <%= link_to 'Articles', admin_articles_path, class: 'block py-2 px-4 hover:bg-blue-700' %>
+      <%= link_to 'Posts', admin_posts_path, class: 'block py-2 px-4 hover:bg-blue-700' %>
+      <%= link_to 'Media', admin_media_path, class: 'block py-2 px-4 hover:bg-blue-700' %>
+      <%= link_to 'Comments', admin_comments_path, class: 'block py-2 px-4 hover:bg-blue-700' %>
+      <%= link_to 'Users', admin_users_path, class: 'block py-2 px-4 hover:bg-blue-700' %>
+      <%= link_to 'Settings', admin_settings_path, class: 'block py-2 px-4 hover:bg-blue-700' %>
+    </nav>
+  </div>
+</div>
