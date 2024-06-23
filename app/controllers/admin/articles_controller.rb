@@ -10,11 +10,16 @@ module Admin
   
       def create
         @article = Article.new(article_params)
-
         if @article.save
-          redirect_to admin_articles_path, notice: 'Article was successfully created.'
+          respond_to do |format|
+            format.html { redirect_to admin_articles_path, notice: 'Article was successfully created.' }
+            format.json { render :show, status: :created, location: @article }
+          end
         else
-          render :new
+          respond_to do |format|
+            format.html { render :new }
+            format.json { render json: @article.errors, status: :unprocessable_entity }
+          end
         end
       end
   
