@@ -5,7 +5,7 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
   <!-- Main Content Area -->
   <div class="grid col-span-2 lg:col-span-2 bg-white p-6 rounded shadow">
-    <%= form_with model: [:admin, @article], local: true do |form| %>
+    <%= form_with model: [:admin, @article], local: true,  data: { turbo: false } do |form| %>
       <div class="mb-4">
         <%= form.label :title, "Title", class: "block text-sm font-medium text-gray-700" %>
         <%= form.text_field :title, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
