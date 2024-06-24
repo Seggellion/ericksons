@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_22_191218) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_24_142709) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,11 +54,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_22_191218) do
 
   create_table "articles", force: :cascade do |t|
     t.string "title"
-    t.text "content", null: false
+    t.text "content"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -86,6 +94,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_22_191218) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_pages_on_category_id"
     t.index ["user_id"], name: "index_pages_on_user_id"
   end
 
@@ -95,7 +105,28 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_22_191218) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content"
+    t.string "featured_image"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_services_on_category_id"
+  end
+
+  create_table "testimonials", force: :cascade do |t|
+    t.string "title", null: false
+    t.text "content"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_testimonials_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -111,9 +142,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_22_191218) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "articles", "categories"
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "media", "users"
+  add_foreign_key "pages", "categories"
   add_foreign_key "pages", "users"
+  add_foreign_key "posts", "categories"
   add_foreign_key "posts", "users"
+  add_foreign_key "services", "categories"
+  add_foreign_key "testimonials", "categories"
 end

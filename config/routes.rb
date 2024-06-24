@@ -19,6 +19,11 @@ Rails.application.routes.draw do
     resources :comments
     resources :users
     resources :settings
+    resources :services do
+      member do
+        patch :featured_image
+      end
+    end
     root to: 'dashboard#index'
   end
 
