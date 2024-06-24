@@ -23,11 +23,8 @@ module Admin
   
       def update
         @service = Service.find(params[:id])
-        
-        if @service.update(service_params)
-            puts "output"
-            Rails.logger.debug "Service params: #{service_params.inspect}"
 
+        if @service.update(service_params)
           redirect_to admin_services_path, notice: 'Service was successfully updated.'
         else
           render :edit

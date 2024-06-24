@@ -3,7 +3,7 @@ module Admin
     layout 'admin'
 
     def index
-      @pages = Page.all
+      @pages = Page.all      
       # Admin dashboard logic
     end
   end
