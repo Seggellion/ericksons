@@ -1,50 +1,96 @@
-
 <header class="bg-white">
   <!-- First Row -->
   <div class="flex justify-between items-center px-8">
-  <div class="overflow-hidden h-24 w-48">
-    <%= image_tag 'corporate-logo.webp', alt: 'Corporate Logo', class: 'h-full w-full object-cover object-center scale-115' %>
+    <div class="overflow-hidden h-24 w-48">
+      <%= image_tag 'corporate-logo.webp', alt: 'Corporate Logo', class: 'h-full w-full object-cover object-center scale-115' %>
+    </div>
+    <h1 class="text-2xl font-bold mx-auto">Artificial Eye And Facial Prosthetic Clinic</h1>
+    <div data-controller="mobilemenu" class="lg:hidden">
+      <button data-action="click->mobilemenu#toggle" class="text-black focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+      <!-- Mobile Menu -->
+      <nav class="fixed inset-0 bg-blue-600 bg-opacity-95 px-8 py-4 hidden" data-mobilemenu-target="menu">
+        <button data-action="click->mobilemenu#toggle" class="text-white focus:outline-none mb-4">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        <ul class="flex flex-col space-y-4 text-white">
+          <li><a href="#">HOME</a></li>
+          <li class="relative group">
+            <a href="#">OUR SERVICES</a>
+            <ul class="ml-4 mt-2">
+              <li><a href="#" class="block">Artificial Eyes</a></li>
+              <li><a href="#" class="block">Scleral Shell</a></li>
+              <li><a href="#" class="block">Eyes for Children</a></li>
+              <li><a href="#" class="block">Ears</a></li>
+              <li><a href="#" class="block">Orbitals</a></li>
+              <li><a href="#" class="block">Noses</a></li>
+            </ul>
+          </li>
+          <li class="relative group">
+            <a href="#">WHAT TO EXPECT</a>
+            <ul class="ml-4 mt-2">
+              <li><a href="#" class="block">Expectation 1</a></li>
+              <li><a href="#" class="block">Expectation 2</a></li>
+            </ul>
+          </li>
+          <li class="relative group">
+            <a href="#">ABOUT</a>
+            <ul class="ml-4 mt-2">
+              <li><a href="#" class="block">About Us</a></li>
+              <li><a href="#" class="block">Our Team</a></li>
+            </ul>
+          </li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">CONTACT US</a></li>
+          <li class="text-white mt-4">
+            <span>(123) 456-7890</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
   </div>
-  <h1 class="text-2xl font-bold mx-auto">Artificial Eye And Facial Prosthetic Clinic</h1>
-</div>
 
-  <!-- Second Row -->
-  <nav class="bg-blue-600 px-8 py-4 flex justify-between items-center">
-  <ul class="flex space-x-4 text-white">
-    <li class="relative group">
-      <a href="#">HOME</a>
-    </li>
-    <li class="relative group">
-      <a href="#">OUR SERVICES</a>
-      <ul class="absolute hidden group-hover:block bg-blue-500">
-        <li><a href="#" class="block px-4 py-2">Artificial Eyes</a></li>
-        <li><a href="#" class="block px-4 py-2">Scleral Shell</a></li>
-        <li><a href="#" class="block px-4 py-2">Eyes for Children</a></li>
-        <li><a href="#" class="block px-4 py-2">Ears</a></li>
-        <li><a href="#" class="block px-4 py-2">Orbitals</a></li>
-        <li><a href="#" class="block px-4 py-2">Noses</a></li>
-      </ul>
-    </li>
-    <li class="relative group">
-      <a href="#">WHAT TO EXPECT</a>
-      <ul class="absolute hidden group-hover:block bg-blue-500">
-        <li><a href="#" class="block px-4 py-2">Expectation 1</a></li>
-        <li><a href="#" class="block px-4 py-2">Expectation 2</a></li>
-      </ul>
-    </li>
-    <li class="relative group">
-      <a href="#">ABOUT</a>
-      <ul class="absolute hidden group-hover:block bg-blue-500">
-        <li><a href="#" class="block px-4 py-2">About Us</a></li>
-        <li><a href="#" class="block px-4 py-2">Our Team</a></li>
-      </ul>
-    </li>
-    <li><a href="#">FAQ</a></li>
-    <li><a href="#">CONTACT US</a></li>
-  </ul>
-  <div class="text-white">
-    <span>(123) 456-7890</span>
-  </div>
-</nav>
-
+  <!-- Second Row for Desktop -->
+  <nav class="bg-blue-600 px-8 py-4 hidden lg:flex lg:justify-between lg:items-center">
+    <ul class="flex flex-row lg:space-x-4 text-white">
+      <li class="relative group">
+        <a href="#">HOME</a>
+      </li>
+      <li class="relative group">
+        <a href="#">OUR SERVICES</a>
+        <ul class="absolute hidden lg:group-hover:block bg-blue-500">
+          <li><a href="#" class="block px-4 py-2">Artificial Eyes</a></li>
+          <li><a href="#" class="block px-4 py-2">Scleral Shell</a></li>
+          <li><a href="#" class="block px-4 py-2">Eyes for Children</a></li>
+          <li><a href="#" class="block px-4 py-2">Ears</a></li>
+          <li><a href="#" class="block px-4 py-2">Orbitals</a></li>
+          <li><a href="#" class="block px-4 py-2">Noses</a></li>
+        </ul>
+      </li>
+      <li class="relative group">
+        <a href="#">WHAT TO EXPECT</a>
+        <ul class="absolute hidden lg:group-hover:block bg-blue-500">
+          <li><a href="#" class="block px-4 py-2">Expectation 1</a></li>
+          <li><a href="#" class="block px-4 py-2">Expectation 2</a></li>
+        </ul>
+      </li>
+      <li class="relative group">
+        <a href="#">ABOUT</a>
+        <ul class="absolute hidden lg:group-hover:block bg-blue-500">
+          <li><a href="#" class="block px-4 py-2">About Us</a></li>
+          <li><a href="#" class="block px-4 py-2">Our Team</a></li>
+        </ul>
+      </li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#">CONTACT US</a></li>
+    </ul>
+    <div class="text-white">
+      <span>(123) 456-7890</span>
+    </div>
+  </nav>
 </header>

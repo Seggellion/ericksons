@@ -36,27 +36,22 @@
   <main class="p-8">
 
     <!-- First Section -->
-    <section class="flex m-12">
-      <div class="w-4/5 p-4">
-        <%= yield %>
-
-
-      </div>
-      <div class="w-1/5 p-4">
+    <section class="flex flex-col lg:flex-row m-4 lg:m-12">
+    <div class="w-full lg:w-4/5 p-4">
+      <%= yield %>
+    </div>
+    <div class="w-full lg:w-1/5 p-4 mt-4 lg:mt-0">
       <div style="background-color:#d6d6d6;" class="p-4">
         <h2 class="text-xl font-bold">IMPORTANT</h2>
         <p>
-Do not use hand sanitizer or any alcohol based cleaner on your ocular prosthesis, as it will crack the acrylic!</p>
+          Do not use hand sanitizer or any alcohol based cleaner on your ocular prosthesis, as it will crack the acrylic!
+        </p>
       </div>
-      </div>
-    </section>
-
-
+    </div>
+  </section>
   
+
       <%= render '/home/services', services: @services %>
- 
-
-
 
 <%= render '/home/testimonials' %>
   </main>
