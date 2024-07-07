@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_24_201222) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_01_210334) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -59,6 +59,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_201222) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
+    t.string "slug"
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
@@ -67,6 +68,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_201222) do
     t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -88,13 +90,31 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_201222) do
     t.index ["user_id"], name: "index_media_on_user_id"
   end
 
+  create_table "menu_items", force: :cascade do |t|
+    t.string "title"
+    t.string "url"
+    t.bigint "menu_id", null: false
+    t.integer "parent_id"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["menu_id"], name: "index_menu_items_on_menu_id"
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string "title", null: false
-    t.text "content"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
+    t.text "content"
+    t.string "slug"
     t.index ["category_id"], name: "index_pages_on_category_id"
     t.index ["user_id"], name: "index_pages_on_user_id"
   end
@@ -116,6 +136,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_201222) do
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "slug"
     t.index ["category_id"], name: "index_services_on_category_id"
   end
 
@@ -145,6 +166,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_24_201222) do
   add_foreign_key "articles", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "media", "users"
+  add_foreign_key "menu_items", "menus"
   add_foreign_key "pages", "categories"
   add_foreign_key "pages", "users"
   add_foreign_key "posts", "categories"

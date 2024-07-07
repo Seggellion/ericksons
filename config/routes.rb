@@ -1,4 +1,15 @@
 Rails.application.routes.draw do
+  get 'menu_items/new'
+  get 'menu_items/create'
+  get 'menu_items/edit'
+  get 'menu_items/update'
+  get 'menu_items/destroy'
+  get 'menus/index'
+  get 'menus/new'
+  get 'menus/create'
+  get 'menus/edit'
+  get 'menus/update'
+  get 'menus/destroy'
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -24,10 +35,15 @@ Rails.application.routes.draw do
         patch :featured_image
       end
     end
+    resources :menus do
+      resources :menu_items do
+        patch :update_position, on: :member
+      end
+    end
     root to: 'dashboard#index'
   end
 
-
+    get 'footer', to: 'menus#footer'
   # Defines the root path route ("/")
    root "home#index"
 end

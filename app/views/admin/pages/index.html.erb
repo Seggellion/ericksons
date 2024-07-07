@@ -16,7 +16,7 @@
       <% @pages.each do |page| %>
         <tr>
           <td class="py-2 px-4 border"><%= page.title %></td>
-          <td class="py-2 px-4 border"><%= page.author %></td>
+          <td class="py-2 px-4 border"><%= page.user.name %></td>
           <td class="py-2 px-4 border"><%= page.created_at.strftime('%Y-%m-%d') %></td>
           <td class="py-2 px-4 border">
             <%= link_to 'Edit', edit_admin_page_path(page), class: 'text-blue-500 hover:underline' %> |

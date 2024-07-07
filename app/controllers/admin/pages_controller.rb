@@ -39,7 +39,7 @@ module Admin
       private
   
       def page_params
-        params.require(:page).permit(:title, :body)
+        params.require(:page).permit(:title, :content).merge(user_id: 1)
       end
     end
   end
