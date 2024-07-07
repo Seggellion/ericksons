@@ -64,7 +64,7 @@ rails server
 
 Open your browser and go to http://localhost:3000.
 
-##Configuration
+## Configuration
 Tailwind CSS
 Tailwind CSS is used for styling. The configuration is in tailwind.config.js. To compile Tailwind CSS, run:
 
@@ -72,18 +72,18 @@ Tailwind CSS is used for styling. The configuration is in tailwind.config.js. To
 npx tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/stylesheets/application.css --watch
 ```
 
-###Importing Custom Fonts
+### Importing Custom Fonts
 Add your custom fonts (e.g., Alegreya) to the app/assets/fonts/alegreya directory and configure them in app/assets/stylesheets/fonts.css.
 
-###Active Storage
+### Active Storage
 Active Storage is used for file uploads. Ensure you have a storage service configured in config/storage.yml.
 
-###Turbo
+### Turbo
 Turbo is enabled for enhanced user experience. Ensure it is properly set up in app/javascript/packs/application.js.
 
-##Usage
+## Usage
 
-###Admin Interface
+### Admin Interface
 The admin interface allows you to manage various content types:
 
 - Articles
@@ -92,23 +92,23 @@ The admin interface allows you to manage various content types:
 
 To access the admin interface, go to /admin.
 
-###Managing Services
+### Managing Services
 You can create, edit, update, and delete services. Each service can have a title, rich text content, featured image, and categories.
 
-###Managing Articles and Testimonials
+### Managing Articles and Testimonials
 Similar to services, you can manage articles and testimonials with rich text content and categories.
 
-###Viewing Current Images
+### Viewing Current Images
 When editing a service, the currently assigned image (if any) is displayed above the image upload form.
 
-###Features
+### Features
 - Custom Admin Interface: A WordPress-like admin interface built with Tailwind CSS.
 - Rich Text Editing: Using Action Text (Trix) for content management.
 - File Uploads: Manage images with Active Storage.
 - Turbo Integration: Enhanced user experience with Turbo.
 - Custom Fonts: Integrate and use custom fonts.
 
-##Deployment
+## Deployment
 
 1. Deploying to Heroku
 Create a new Heroku application:
