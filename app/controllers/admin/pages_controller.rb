@@ -1,5 +1,6 @@
 module Admin
     class PagesController < ApplicationController
+      before_action :set_page, only: [:update_category]
       def index
         @pages = Page.all
       end
@@ -18,7 +19,7 @@ module Admin
       end
   
       def edit
-        @page = Page.find(params[:id])
+        @page = Page.find_by_slug(params[:id])
       end
   
       def update
@@ -29,6 +30,16 @@ module Admin
           render :edit
         end
       end
+
+      def update_category
+
+        if @page.update(page_params)
+          render json: { success: true }
+        else
+          render json: { success: false }
+        end
+      end
+
   
       def destroy
         @page = Page.find(params[:id])
@@ -38,8 +49,13 @@ module Admin
   
       private
   
+      def set_page
+        
+        @page = Page.find(params[:id])
+      end
+
       def page_params
-        params.require(:page).permit(:title, :content).merge(user_id: 1)
+        params.require(:page).permit(:title, :content, :category_id).merge(user_id: 1)
       end
     end
   end

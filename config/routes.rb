@@ -24,14 +24,20 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :articles
     resources :testimonials
-    resources :pages
+    resources :pages do
+      member do
+        patch :update_category
+      end
+    end
     resources :media
     resources :posts
     resources :comments
     resources :users
+    resources :categories
     resources :settings
     resources :services do
       member do
+        patch :update_category
         patch :featured_image
       end
     end

@@ -1,5 +1,7 @@
 <h1 class="text-3xl font-bold mb-4">Add New Testimonial</h1>
-
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+  <!-- Main Content Area -->
+  <div class="lg:col-span-3 bg-white p-6 rounded shadow">
 <%= form_with model: [:admin, @testimonial], local: true do |form| %>
   <div class="mb-4">
     <%= form.label :title, "Author", class: "block text-sm font-medium text-gray-700" %>
@@ -17,6 +19,12 @@
   </div>
 
   <div class="mb-4 flex justify-end">
-    <%= form.submit "Create Testimonial", class: "bg-blue-500 text-white px-4 py-2 rounded" %>
+    <%= form.submit "Save Testimonial", class: "bg-blue-500 text-white px-4 py-2 rounded" %>
   </div>
 <% end %>
+</div>
+
+
+
+
+</div>

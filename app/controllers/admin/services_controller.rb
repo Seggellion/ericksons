@@ -1,5 +1,7 @@
 module Admin
     class ServicesController < Admin::ApplicationController
+      before_action :set_service, only: [:update_category]
+
       def index
         @services = Service.all
       end
@@ -18,7 +20,7 @@ module Admin
       end
 
       def edit
-        @service = Service.find(params[:id])
+        @service = Service.find_by_slug(params[:id])
       end
   
       def update
@@ -31,6 +33,14 @@ module Admin
         end
       end
 
+      def update_category
+        if @service.update(service_params)
+          render json: { success: true }
+        else
+          render json: { success: false }
+        end
+      end
+
       def destroy
         @service = Service.find(params[:id])
         
@@ -40,8 +50,12 @@ module Admin
   
       private
   
+      def set_service
+        @service = Service.find(params[:id])
+      end
+
       def service_params
-        params.require(:service).permit(:title, :content, :featured_image, category_ids: [])
+        params.require(:service).permit(:title, :content, :featured_image, :category_id)
       end
     end
   end

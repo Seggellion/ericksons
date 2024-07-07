@@ -39,7 +39,7 @@ module Admin
       private
   
       def testimonial_params
-        params.require(:testimonial).permit(:author, :content)
+        params.require(:testimonial).permit(:title, :content, :category_id)
       end
     end
   end
