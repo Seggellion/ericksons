@@ -41,8 +41,7 @@ export default class extends Controller {
           </div>
         `
         const infowindow = new google.maps.InfoWindow({
-          content: contentString,
-           ariaLabel: "Uluru"
+          content: contentString
         })
 
         const marker = new google.maps.Marker({

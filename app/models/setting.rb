@@ -1,6 +1,6 @@
 class Setting < ApplicationRecord
   validates :key, presence: true, uniqueness: true
-  validates :setting_type, presence: true, inclusion: { in: %w[text checkbox radio image video json] }
+  validates :setting_type, presence: true, inclusion: { in: %w[text checkbox radio image video json color] }
 
   before_validation :format_key
   before_save :format_value

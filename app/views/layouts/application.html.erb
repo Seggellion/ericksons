@@ -15,24 +15,40 @@
 
   <script src="https://maps.googleapis.com/maps/api/js?key=<%= Setting.get('google_maps_api') %>" async defer></script>
 
-  </head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=<%= Setting.get('header-font') %>&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=<%= Setting.get('body-font') %>&display=swap" rel="stylesheet">
 
+<% if (headerFontColor = Setting.get('header-font-color')) %>
+<style>
+  :root {
+    --header-font-color: <%= headerFontColor %>;
+  }
+</style>
+<% end %>
+
+  </head>
   <body>
 
   <%= render '/layouts/header' %>
 <style>
 @font-face {
-  font-family: 'Alegreya';
-  src: url('<%= asset_path('alegreya/Alegreya-Regular.ttf') %>') format('truetype');
+  font-family: "<%= Setting.get('header-font') %>", sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Alegreya';
-  src: url('<%= asset_path('alegreya/Alegreya-Bold.ttf') %>') format('truetype');
-  font-weight: 700;
+  font-family: "<%= Setting.get('body-font') %>", sans-serif;
+  font-weight: 400;
   font-style: normal;
+}
+h2,h1{
+  font-family: "<%= Setting.get('header-font') %>", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--header-font-color);
 }
 </style>
   <main class="p-8">

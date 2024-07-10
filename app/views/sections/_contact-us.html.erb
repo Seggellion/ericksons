@@ -1,4 +1,4 @@
-<section class="my-8" data-controller="google-map" 
+<section class="m-4 lg:m-12" data-controller="google-map" 
       <% if (address = Setting.get('store-address')) %>
   data-google-map-line1="<%= address['line1'] %>"
   data-google-map-line2="<%= address['line2'] %>"
@@ -8,7 +8,7 @@
   <% end %>
   data-google-map-store-name="<%= Setting.get('store-name') %>"
   >
-  <h2 class="text-2xl font-bold text-center mb-8">Contact Us</h2>
+  <h2 class="text-3xl lg:text-5xl font-bold mb-6">Contact Us</h2>
 
   <!-- First Row: Centered Photo -->
   <div class="flex justify-center mb-8">
