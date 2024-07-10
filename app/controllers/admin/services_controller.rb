@@ -3,7 +3,11 @@ module Admin
       before_action :set_service, only: [:update_category]
 
       def index
-        @services = Service.all
+        if params[:group].present?
+          @settings = Setting.where(group: params[:group])
+        else
+          @settings = Setting.all
+        end
       end
   
       def new
