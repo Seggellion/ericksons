@@ -29,7 +29,7 @@ Rails.application.routes.draw do
         patch :update_category
       end
     end
-    resources :media
+    resources :media, only: [:index, :destroy]
     resources :posts
     resources :comments
     resources :users
@@ -46,6 +46,20 @@ Rails.application.routes.draw do
         patch :update_position, on: :member
       end
     end
+    
+    resources :sections do
+      member do
+        patch :move_up
+        patch :move_down
+      end
+      resources :blocks, only: [:new, :create, :edit, :update, :destroy] do
+        member do
+          patch :move_up
+          patch :move_down
+        end
+      end
+    end
+
     root to: 'dashboard#index'
   end
 

@@ -32,8 +32,6 @@ module Admin
       end
   
       def destroy
-   
-        
         @setting.destroy
         redirect_to admin_settings_path, notice: 'Setting was successfully deleted.'
       end

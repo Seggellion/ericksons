@@ -5,7 +5,7 @@ class HomeController < ApplicationController
         @services = Service.all
         @footer_menu_items = Menu.for_location('footer')
         @testimonials = Testimonial.by_category_name('home-page')
-
+        @sections = Section.all
     end
 
 end

@@ -69,6 +69,11 @@ h2,h1{
   </section>
   
 
+  <% @sections.each do |section| %>
+    <%= render_section(section) %>
+  <% end %>
+
+
       <%= render '/home/services', services: @services %>
 
 <%= render '/home/testimonials' %>

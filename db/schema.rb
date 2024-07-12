@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_09_154202) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_11_161645) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_154202) do
     t.string "slug"
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
+  create_table "blocks", force: :cascade do |t|
+    t.bigint "section_id", null: false
+    t.string "block_type", null: false
+    t.text "content"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_blocks_on_section_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -130,6 +140,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_154202) do
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
+  create_table "sections", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "template", null: false
+    t.integer "animation_speed"
+    t.integer "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "services", force: :cascade do |t|
     t.string "title", null: false
     t.text "content"
@@ -173,6 +192,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_09_154202) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "categories"
   add_foreign_key "articles", "users"
+  add_foreign_key "blocks", "sections"
   add_foreign_key "comments", "users"
   add_foreign_key "media", "users"
   add_foreign_key "menu_items", "menus"
