@@ -1,7 +1,7 @@
 class Service < ApplicationRecord
     belongs_to :category, optional: true
     has_rich_text :content
-    has_one_attached :featured_image
+    has_many_attached :images
 
     validates :title, presence: true
     extend FriendlyId

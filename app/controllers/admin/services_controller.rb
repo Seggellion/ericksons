@@ -29,9 +29,22 @@ module Admin
       end
   
       def update
-        @service = Service.find(params[:id])
-
-        if @service.update(service_params)
+        @service = Service.find_by_slug(params[:id])
+        
+        # Remove selected images
+        if params[:service][:remove_images].present?
+          params[:service][:remove_images].each do |signed_id|
+            image = @service.images.find { |img| img.signed_id == signed_id }
+            image.purge if image
+          end
+        end
+  
+        # Attach new images
+        if params[:service][:images].present?
+          @service.images.attach(params[:service][:images])
+        end
+  
+        if @service.update(service_params.except(:images, :remove_images))
           redirect_to admin_services_path, notice: 'Service was successfully updated.'
         else
           render :edit
@@ -47,7 +60,7 @@ module Admin
       end
 
       def destroy
-        @service = Service.find(params[:id])
+        @service = Service.find_by_slug(params[:id])
         
         @service.destroy
         redirect_to admin_services_path, notice: 'Service was successfully deleted.'
@@ -56,11 +69,12 @@ module Admin
       private
   
       def set_service
-        @service = Service.find(params[:id])
+        @service = Service.find_by_slug(params[:id])
       end
 
       def service_params
-        params.require(:service).permit(:title, :content, :featured_image, :category_id)
+        params.require(:service).permit(:title, :content, :category_id, :slug, images: [], remove_images: [])        
+
       end
     end
   end

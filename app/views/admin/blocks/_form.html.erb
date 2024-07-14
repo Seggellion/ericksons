@@ -9,6 +9,10 @@
     </select>
     </div>
 
+    <% if block.image %>
+
+     <%= image_tag url_for(block.image), class: "max-w-xs" %>
+<% end %>
 
     <div class="mb-4" data-block-form-target="contentField">
     <%= form.label :content, "Content", class: "block text-sm font-medium text-gray-700" %>
