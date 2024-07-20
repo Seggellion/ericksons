@@ -23,11 +23,9 @@ module Admin
       end
   
       def update
-        @page = Page.find(params[:id])
+        @page = Page.find_by_slug(params[:id])
         if @page.update(page_params)
-          redirect_to admin_pages_path, notice: 'Page was successfully updated.'
-        else
-          render :edit
+           redirect_to edit_admin_page_path(@page), notice: 'Page was successfully updated.'
         end
       end
 
@@ -55,7 +53,8 @@ module Admin
       end
 
       def page_params
-        params.require(:page).permit(:title, :content, :category_id).merge(user_id: 1)
+        params.require(:page).permit(:title, :content, :category_id, :meta_description, :meta_keywords, images: [], remove_images: []).merge(user_id: 1)
+
       end
     end
   end

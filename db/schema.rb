@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_11_161645) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_17_021948) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -60,6 +60,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_161645) do
     t.datetime "updated_at", null: false
     t.bigint "category_id"
     t.string "slug"
+    t.text "meta_description"
+    t.text "meta_keywords"
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
@@ -97,6 +99,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_161645) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "meta_description"
+    t.text "meta_keywords"
     t.index ["user_id"], name: "index_media_on_user_id"
   end
 
@@ -108,6 +112,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_161645) do
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_type"
+    t.integer "item_id"
     t.index ["menu_id"], name: "index_menu_items_on_menu_id"
   end
 
@@ -125,6 +131,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_161645) do
     t.bigint "category_id"
     t.text "content"
     t.string "slug"
+    t.text "meta_description"
+    t.text "meta_keywords"
     t.index ["category_id"], name: "index_pages_on_category_id"
     t.index ["user_id"], name: "index_pages_on_user_id"
   end
@@ -136,6 +144,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_161645) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id"
+    t.text "meta_description"
+    t.text "meta_keywords"
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -156,6 +166,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_11_161645) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.text "meta_description"
+    t.text "meta_keywords"
     t.index ["category_id"], name: "index_services_on_category_id"
   end
 

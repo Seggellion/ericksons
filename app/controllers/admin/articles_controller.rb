@@ -39,7 +39,7 @@ module Admin
       private
   
       def article_params
-        params.require(:article).permit(:title, :content).merge(user_id: 1)
+        params.require(:article).permit(:title, :content, :meta_description, :meta_keywords).merge(user_id: 1)
       end
       
     end

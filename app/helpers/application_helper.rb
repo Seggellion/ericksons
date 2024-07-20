@@ -5,19 +5,36 @@ module ApplicationHelper
       end
     
       def meta_description
-        content_for?(:meta_description) ? content_for(:meta_description) : extract_description(@service.content) if defined?(@service)
+        if content_for?(:meta_description)
+          content_for(:meta_description)
+        elsif defined?(@service) && @service.meta_description.present?
+          @service.meta_description
+        elsif defined?(@page) && @page.meta_description.present?
+          @page.meta_description
+        else
+          extract_description(@service&.content || @page&.content)
+        end
       end
+    
+      private
+    
+   
     
       def meta_keywords
         content_for?(:meta_keywords) ? content_for(:meta_keywords) : extract_keywords(@service.content) if defined?(@service)
+      end
+      
+      def page_url(page)
+        "/#{page.slug}"
       end
 
       private
 
       def extract_description(content)
-        # Extract the first 160 characters from the content for the description
-        strip_tags(content).truncate(160)
+        # Assuming extract_description logic here
+        content.to_plain_text.truncate(160) if content.present?
       end
+
     
       def extract_keywords(content)
         # Extract keywords from the content (simple implementation)

@@ -11,6 +11,7 @@ module Admin
     end
 
     def create
+      
       @menu = Menu.new(menu_params)
       if @menu.save
         redirect_to edit_admin_menu_path(@menu), notice: 'Menu was successfully created.'
@@ -20,8 +21,10 @@ module Admin
     end
 
     def edit
+      @services = Service.all
       @pages = Page.all
       @categories = Category.all
+      load_menu_items_for_select
     end
 
     def update
@@ -39,6 +42,11 @@ module Admin
     end
 
     private
+
+    
+    def load_menu_items_for_select
+      @menu_items_options = @menu.menu_items.pluck(:title, :id)
+    end
 
     def set_menu
       @menu = Menu.find(params[:id])

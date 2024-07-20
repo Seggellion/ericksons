@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy', as: :logout
   resources :services, only: [:index, :show]
 
+
   namespace :admin do
     resources :articles
     resources :testimonials
@@ -44,7 +45,9 @@ Rails.application.routes.draw do
     end
     resources :menus do
       resources :menu_items do
-        patch :update_position, on: :member
+        patch :move_up, on: :member
+        patch :move_down, on: :member
+        patch :update_parent
       end
     end
     
@@ -63,6 +66,18 @@ Rails.application.routes.draw do
 
     root to: 'dashboard#index'
   end
+
+  
+
+
+  
+    # Catch-all route for pages based on slug, excluding specific paths
+    get '/:slug', to: 'pages#show', constraints: lambda { |req|
+      !req.path.starts_with?('/services', '/admin', '/pages')
+    }, as: :catch_all_page
+  
+
+      get 'pages', to: 'pages#index'
 
     get 'footer', to: 'menus#footer'
   # Defines the root path route ("/")

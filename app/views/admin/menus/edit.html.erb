@@ -20,7 +20,7 @@
           <div class="accordion-content" data-accordion-target="content" data-accordion-id="pages">
             <% @pages.each do |page| %>
               <div class="form-check">
-                <%= check_box_tag 'page_ids[]', page.id, false, data: { title: page.title, slug: page.slug, action: "change->menu-items#addPage" } %>
+                <%= check_box_tag 'page_ids[]', page.id, false, data: { title: page.title, url: page.slug, action: "change->menu-items#addPage" } %>
                 <%= label_tag "page_ids[]", page.title, value: page.id %>
               </div>
             <% end %>
@@ -33,18 +33,23 @@
             Links
           </button>
           <div class="accordion-content hidden" data-accordion-target="content" data-accordion-id="links">
-            <%= form_with model: [:admin, @menu, @menu.menu_items.new], url: admin_menu_menu_items_path(@menu), local: true do |form| %>
-              <div class="mb-4">
-                <%= form.label 'menu_item[title]', 'Link Title', class: 'block text-gray-700' %>
-                <%= form.text_field 'menu_item[title]', class: 'form-input mt-1 block w-full' %>
-              </div>
-              <div class="mb-4">
-                <%= form.label 'menu_item[slug]', 'Link Slug', class: 'block text-gray-700' %>
-                <%= form.text_field 'menu_item[slug]', class: 'form-input mt-1 block w-full' %>
-              </div>
-              <%= form.submit 'Add to Menu', class: 'btn btn-primary' %>
-            <% end %>
-          </div>
+          <%= form_with model: [:admin, @menu, @menu.menu_items.new], url: admin_menu_menu_items_path(@menu), local: true do |form| %>
+            <div class="mb-4">
+              <%= form.label :title, 'Link Title', class: 'block text-gray-700' %>
+              <%= form.text_field :title, class: 'form-input mt-1 block w-full' %>
+            </div>
+            <div class="mb-4">
+              <%= form.label :url, 'Link Slug', class: 'block text-gray-700' %>
+              <%= form.text_field :url, class: 'form-input mt-1 block w-full' %>
+            </div>
+            <div class="mb-4">
+              <%= form.hidden_field :item_type, value: 'custom', class: 'form-input mt-1 block w-full' %>
+            </div>
+            <%= form.submit 'Add to Menu', class: 'btn btn-primary' %>
+          <% end %>
+        </div>
+        
+            
         </div>
 
         <!-- Categories Accordion -->
@@ -55,8 +60,23 @@
           <div class="accordion-content hidden" data-accordion-target="content" data-accordion-id="categories">
             <% @categories.each do |category| %>
               <div class="form-check">
-                <%= check_box_tag 'category_ids[]', category.id, false, data: { name: category.name, slug: category.slug, action: "change->menu-items#addCategory" } %>
+                <%= check_box_tag 'category_ids[]', category.id, false, data: { title: category.name, url: category.slug, action: "change->menu-items#addCategory" } %>
                 <%= label_tag "category_ids[]", category.name, value: category.id %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+
+        <!-- Services Accordion -->
+        <div>
+          <button class="accordion-button" data-action="click->accordion#toggle" data-accordion-id="services">
+            Services
+          </button>
+          <div class="accordion-content hidden" data-accordion-target="content" data-accordion-id="services">
+            <% @services.each do |service| %>
+              <div class="form-check">
+                <%= check_box_tag 'service_ids[]', service.id, false, data: { title: service.title, url: service.slug, action: "change->menu-items#addService" } %>
+                <%= label_tag "service_ids[]", service.title, value: service.id %>
               </div>
             <% end %>
           </div>

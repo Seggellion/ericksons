@@ -4,8 +4,8 @@
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
     <% services.each do |service| %>
       <div>
-        <% if service.featured_image.attached? %>
-          <%= image_tag service.featured_image, class: 'w-full' %>
+        <% if service.images.attached? %>
+          <%= image_tag service.images.first, class: 'w-full' %>
         <% else %>
           <%= image_tag 'ericksons-placeholder.jpg', alt: 'Placeholder', class: 'w-full' %>
         <% end %>

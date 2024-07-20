@@ -73,7 +73,7 @@ module Admin
       end
 
       def service_params
-        params.require(:service).permit(:title, :content, :category_id, :slug, images: [], remove_images: [])        
+        params.require(:service).permit(:title, :content, :category_id, :slug, :meta_description, :meta_keywords, images: [], remove_images: [], )        
 
       end
     end
