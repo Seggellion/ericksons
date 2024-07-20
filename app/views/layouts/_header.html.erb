@@ -6,6 +6,15 @@
     </div>
     <h1 class="text-2xl font-bold mx-auto">Artificial Eye And Facial Prosthetic Clinic</h1>
 
+    <% if (announcement = Setting.find_by(key: 'announcement-bar')) && announcement.parsed_value.present? %>
+    <div class="announcement-bar text-black text-center py-2">
+      <a href="<%= catch_all_page_path(announcement.parsed_value[1]) %>" class="text-black">
+        <%= announcement.parsed_value[0] %>
+      </a>
+    </div>
+  <% end %>
+
+
     <%= render 'menus/header_menu_mobile' %>
 
   </div>

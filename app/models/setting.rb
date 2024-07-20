@@ -19,6 +19,12 @@ class Setting < ApplicationRecord
     setting.save
   end
 
+  def parsed_value
+    JSON.parse(value) if setting_type == 'json'
+  rescue JSON::ParserError
+    {}
+  end
+
   private
 
   def format_key
@@ -48,6 +54,8 @@ class Setting < ApplicationRecord
       value
     end
   end
+
+
 
   def self.parse_address(value)
     parts = value.split(',').map(&:strip)

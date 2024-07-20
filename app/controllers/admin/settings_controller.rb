@@ -14,6 +14,7 @@ module Admin
         @setting = Setting.new(setting_params)
 
         if @setting.save
+          byebug
           redirect_to admin_settings_path, notice: 'Setting was successfully created.'
         else
           render :new
