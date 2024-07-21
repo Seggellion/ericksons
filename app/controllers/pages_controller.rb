@@ -11,6 +11,8 @@ class PagesController < ApplicationController
   
     private
   
+
+    
     def set_page
       @page = Page.friendly.find(params[:slug])
     end

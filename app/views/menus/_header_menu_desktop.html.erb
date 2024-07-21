@@ -3,13 +3,30 @@
  <ul class="flex flex-row lg:space-x-4 text-white">
    <% @header_menu_items.each do |menu_item| %>
      <li class="relative group">
-       <%= link_to menu_item.title, menu_item.url || '#' %>
+             <% if menu_item.item_type == 'page' %>
+              <%= link_to menu_item.title, catch_all_page_path(menu_item.url) %>      
+           <% elsif menu_item.item_type == 'service' %>
+             <%= link_to menu_item.title, service_path(menu_item.url) %>
+           <% else %>
+             <%= link_to menu_item.title, menu_item.url || '#' %>
+           <% end %>
+
+
        <% if menu_item.children.any? %>
          <ul class="absolute hidden px-4 py-4 lg:group-hover:block bg-blue-500">
            <% menu_item.children.each do |child| %>
              <li class="py-2">
-               <%= link_to child.title, child.url || '#' %>
+
+             <% if child.item_type == 'page' %>
+              <%= link_to child.title, catch_all_page_path(child.url) %>      
+           <% elsif child.item_type == 'service' %>
+             <%= link_to child.title, service_path(child.url) %>
+           <% else %>
+             <%= link_to child.title, child.url || '#' %>
+           <% end %>
+   
              </li>
+
            <% end %>
          </ul>
        <% end %>

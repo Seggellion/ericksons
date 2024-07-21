@@ -67,10 +67,6 @@ Rails.application.routes.draw do
     root to: 'dashboard#index'
   end
 
-  
-
-
-  
     # Catch-all route for pages based on slug, excluding specific paths
     get '/:slug', to: 'pages#show', constraints: lambda { |req|
       !req.path.starts_with?('/services', '/admin', '/pages')
