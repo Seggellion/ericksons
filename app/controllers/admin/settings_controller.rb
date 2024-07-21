@@ -12,9 +12,7 @@ module Admin
   
       def create
         @setting = Setting.new(setting_params)
-
         if @setting.save
-          byebug
           redirect_to admin_settings_path, notice: 'Setting was successfully created.'
         else
           render :new
@@ -44,7 +42,7 @@ module Admin
       end
   
       def setting_params
-        params.require(:setting).permit(:key, :value, :group, :setting_type)
+        params.require(:setting).permit(:key, :value, :group, :setting_type, :image)
       end
     end
   end

@@ -1,4 +1,4 @@
-<%= form_with model: [:admin, @setting], local: true, data: { controller: "settings-form" } do |form| %>
+<%= form_with model: [:admin, @setting], local: true, html: { multipart: true }, data: { controller: "settings-form" } do |form| %>
   <div class="mb-4">
     <%= form.label :key, "Key", class: "block text-sm font-medium text-gray-700" %>
     <%= form.text_field :key, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" %>
@@ -26,10 +26,25 @@
     <% end %>
   </div>
 
+  <div class="mb-4" data-settings-form-target="uploadField" style="<%= @setting.setting_type == 'image' ? '' : 'display:none;' %>">
+    <%= form.label :image, "image", class: "block text-sm font-medium text-gray-700" %>
+    <%= form.file_field :image,  class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"%>
+
+    <% if @setting.image.attached? %>
+      <div class="mt-2">
+        <%= image_tag url_for(@setting.image), class: "w-32 h-32 rounded-md border-gray-300 shadow-sm" %>
+
+      </div>
+    <% end %>
+
+    </div>
+
   <div class="mb-4" data-settings-form-target="colorField" style="<%= @setting.setting_type == 'color' ? '' : 'display:none;' %>">
     <%= form.label :value, "Color", class: "block text-sm font-medium text-gray-700" %>
     <%= form.color_field :value, class: "mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm", data: { controller: "color-picker", action: "input->color-picker#updateColor", target: "color-picker.input" } %>
   </div>
+
+  
 
   <div class="mb-4">
     <%= form.label :group, "Group", class: "block text-sm font-medium text-gray-700" %>

@@ -16,6 +16,14 @@ module ApplicationHelper
         end
       end
     
+      def favicon_url
+        if (favicon = Setting.get('favicon')) && favicon.attached?
+          url_for(favicon)
+        else
+          asset_path('favicon.ico') # fallback to a default favicon if not set
+        end
+      end
+
       private
     
    

@@ -1,7 +1,7 @@
 class Setting < ApplicationRecord
   validates :key, presence: true, uniqueness: true
   validates :setting_type, presence: true, inclusion: { in: %w[text checkbox radio image video json color] }
-
+  has_one_attached :image
   before_validation :format_key
   before_save :format_value
 
@@ -9,7 +9,14 @@ class Setting < ApplicationRecord
     setting = find_by(key: key)
     return unless setting
 
-    setting.setting_type == 'json' ? parse_value(setting.key, setting.value) : setting.value
+    case setting.setting_type
+    when 'json'
+      parse_value(setting.key, setting.value)
+    when 'image'
+      setting.image.attached? ? setting.image : nil
+    else
+      setting.value
+    end
   end
 
   def self.set(key, value, type = 'text')

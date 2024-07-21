@@ -1,10 +1,14 @@
 <header class="bg-white">
   <!-- First Row -->
-  <div class="flex justify-between items-center px-8">
-    <div class="overflow-hidden h-24 w-48">
-      <%= image_tag 'corporate-logo.webp', alt: 'Corporate Logo', class: 'h-full w-full object-cover object-center scale-115' %>
+  <div class="flex justify-between items-center px-8 h-24">
+    <div class="h-full w-auto">
+      <% if (logo = Setting.get('logo')) %>
+        <%= link_to root_path do %>
+            <%= image_tag url_for(logo), alt: 'Corporate Logo', class: 'h-full max-w-full' %>
+        <% end %>
+      <% end %>
     </div>
-    <h1 class="text-2xl font-bold mx-auto">Artificial Eye And Facial Prosthetic Clinic</h1>
+    <h2 class="text-2xl font-bold mx-auto hidden sm:block">Artificial Eye And Facial Prosthetic Clinic</h2>
 
     <% if (announcement = Setting.find_by(key: 'announcement-bar')) && announcement.parsed_value.present? %>
     <div class="announcement-bar text-black text-center py-2">
@@ -13,12 +17,7 @@
       </a>
     </div>
   <% end %>
-
-
     <%= render 'menus/header_menu_mobile' %>
-
   </div>
-
   <%= render 'menus/header_menu_desktop' %>
-
 </header>
