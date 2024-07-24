@@ -12,6 +12,7 @@
       </svg>
     </button>
     <ul class="flex flex-col space-y-4 text-white">
+     <% if @header_menu_items.present? %>
       <% @header_menu_items.each do |menu_item| %>
         <li class="relative group">
           <% if menu_item.children.any? %>
@@ -31,6 +32,7 @@
           <% end %>
         </li>
       <% end %>
+    <% end %>
       <li class="text-white mt-4">
         <span><%= Setting.get('telephone') %></span>
       </li>

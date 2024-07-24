@@ -1,6 +1,7 @@
 <!-- Second Row for Desktop -->
 <nav class="bg-blue-600 px-8 py-4 hidden lg:flex lg:justify-between lg:items-center">
  <ul class="flex flex-row lg:space-x-4 text-white">
+ <% if @header_menu_items.present? %>
    <% @header_menu_items.each do |menu_item| %>
      <li class="relative group">
              <% if menu_item.item_type == 'page' %>
@@ -32,6 +33,7 @@
        <% end %>
      </li>
    <% end %>
+  <% end %>
  </ul>
  <div class="text-white">
    <span><%= Setting.get('telephone') %></span>
