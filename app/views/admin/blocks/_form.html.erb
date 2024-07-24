@@ -9,7 +9,7 @@
     </select>
     </div>
 
-    <% if block.image %>
+    <% if block.image.present? %>
 
      <%= image_tag url_for(block.image), class: "max-w-xs" %>
 <% end %>
