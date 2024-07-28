@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_17_021948) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_27_221927) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_021948) do
     t.string "slug"
     t.text "meta_description"
     t.text "meta_keywords"
+    t.boolean "published"
     t.index ["category_id"], name: "index_articles_on_category_id"
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
@@ -92,6 +93,21 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_021948) do
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "contact_messages", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "phone"
+    t.text "properties"
+    t.string "subject"
+    t.text "body"
+    t.datetime "read_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "ip_address"
+    t.string "country_code"
   end
 
   create_table "media", force: :cascade do |t|
@@ -133,6 +149,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_021948) do
     t.string "slug"
     t.text "meta_description"
     t.text "meta_keywords"
+    t.boolean "published"
+    t.string "template"
     t.index ["category_id"], name: "index_pages_on_category_id"
     t.index ["user_id"], name: "index_pages_on_user_id"
   end
@@ -146,6 +164,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_021948) do
     t.bigint "category_id"
     t.text "meta_description"
     t.text "meta_keywords"
+    t.boolean "published"
     t.index ["category_id"], name: "index_posts_on_category_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -157,6 +176,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_021948) do
     t.integer "position"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "subtitle"
+    t.text "body"
   end
 
   create_table "services", force: :cascade do |t|
@@ -168,6 +189,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_021948) do
     t.string "slug"
     t.text "meta_description"
     t.text "meta_keywords"
+    t.boolean "published"
     t.index ["category_id"], name: "index_services_on_category_id"
   end
 
@@ -190,12 +212,14 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_021948) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name", null: false
     t.string "email", null: false
     t.string "uid", null: false
     t.string "provider"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_type"
+    t.string "first_name"
+    t.string "last_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["uid"], name: "index_users_on_uid", unique: true
   end

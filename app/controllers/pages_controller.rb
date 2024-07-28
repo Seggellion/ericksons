@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   
     def show
       # This will render app/views/pages/show.html.erb
+      render template: "pages/#{@page.template_file}"
     end
 
     def index

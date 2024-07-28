@@ -11,6 +11,12 @@ class Page < ApplicationRecord
 
     has_many :comments, as: :commentable
     belongs_to :category, optional: true
+
+
+    def template_file
+      template.present? ? template : 'show'
+    end
+
     private
 
     def unique_slug_across_models

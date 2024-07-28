@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get '/auth/failure', to: 'sessions#failure'
   delete '/logout', to: 'sessions#destroy', as: :logout
   resources :services, only: [:index, :show]
-
+  resources :contact_messages, only: [:new, :create]
 
   namespace :admin do
     resources :articles
@@ -43,6 +43,7 @@ Rails.application.routes.draw do
         patch :featured_image
       end
     end
+    resources :contact_messages, only: [:index, :show]
     resources :menus do
       resources :menu_items do
         patch :move_up, on: :member
@@ -73,8 +74,7 @@ Rails.application.routes.draw do
     }, as: :catch_all_page
   
 
-      get 'pages', to: 'pages#index'
-
+    get 'pages', to: 'pages#index'
     get 'footer', to: 'menus#footer'
   # Defines the root path route ("/")
    root "home#index"

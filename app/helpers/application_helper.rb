@@ -15,6 +15,10 @@ module ApplicationHelper
           extract_description(@service&.content || @page&.content)
         end
       end
+
+      def unread_messages_count
+        ContactMessage.unread_count
+      end
     
       def favicon_url
         if (favicon = Setting.get('favicon')) && favicon.attached?
