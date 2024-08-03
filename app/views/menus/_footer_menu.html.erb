@@ -6,6 +6,9 @@
         <%= render partial: 'menus/menu_item', collection: @footer_menu_items, as: :menu_item %>
       </ul>
     </nav>
+    <div class="w-full text-right mt-4">
+     <small>© <%= Time.now.year %> <%= Setting.get('store-name') %>. All Rights Reserved.</small>
+     </div>
   </div>
 </div>
 <style>
