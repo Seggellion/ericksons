@@ -5,7 +5,7 @@
     </svg>
   </button>
   <!-- Mobile Menu -->
-  <nav class="fixed inset-0 bg-blue-600 bg-opacity-95 px-8 py-4 hidden" data-mobilemenu-target="menu">
+  <nav class="fixed inset-0 primary-background bg-opacity-95 px-8 py-4 hidden" data-mobilemenu-target="menu">
     <button data-action="click->mobilemenu#toggle" class="text-white focus:outline-none mb-4">
       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -39,7 +39,7 @@
     </ul>
     <% if (google_places_id = Setting.get('google_places_id')) %>
     <div class="ml-auto  mt-4">
-      <%= link_to "Leave a Review", "https://search.google.com/local/writereview?placeid=#{google_places_id}", class: "bg-blue-500 text-white px-4 py-2 rounded", target: "_blank", rel: "noopener" %>
+      <%= link_to "Leave a Review", "https://search.google.com/local/writereview?placeid=#{google_places_id}", class: "btn text-white px-4 py-2 rounded", target: "_blank", rel: "noopener" %>
     </div>
   <% end %>
   </nav>

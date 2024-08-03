@@ -26,13 +26,48 @@
 <link href="https://fonts.googleapis.com/css2?family=<%= Setting.get('header-font') %>&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=<%= Setting.get('body-font') %>&display=swap" rel="stylesheet">
 
-<% if (headerFontColor = Setting.get('header-font-color')) %>
+<% if (headerFontColor = Setting.get('header-font-color')) && 
+      (primaryColor = Setting.get('primary-color')) %>
 <style>
   :root {
     --header-font-color: <%= headerFontColor %>;
+    --primary_color: <%= primaryColor %>;
+    --secondary_color: <%= Setting.get('secondary-color') || '#808080' %>; /* Default to grey if not set */
+  }
+
+  /* Applying the colors to your elements */
+  header #desktop-header-menu{
+    background-color: var(--primary_color);
+  }
+
+  footer {
+    background-color: var(--primary_color);
+    color: var(--header-font-color);
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    color: var(--header-font-color);
+  }
+
+  .primary-background{
+  background-color: var(--primary_color);
+  }
+  button, .btn {
+    background-color: var(--secondary_color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  button.secondary {
+    background-color: var(--primary_color);
+    color: white;
   }
 </style>
 <% end %>
+
 
   </head>
   <body class="flex flex-col min-h-screen">
