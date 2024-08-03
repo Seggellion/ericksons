@@ -1,6 +1,6 @@
 <!-- Services Section -->
 <section class="m-4 lg:m-12">
-  <h2 class="text-3xl lg:text-5xl font-bold mb-6"><%= section.name %></h2>
+<%= render '/sections/section_header', section: section %>
   <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
     <% @services.each do |service| %>
       <div>

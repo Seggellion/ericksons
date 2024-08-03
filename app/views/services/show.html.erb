@@ -21,7 +21,7 @@
 
 <article class="container mx-auto my-8 p-4 bg-white rounded shadow">
 <header>
-  <h1 class="text-4xl font-bold mb-6 text-gray-800"><%= @service.title %></h1>
+  <h1 class="text-4xl font-bold mb-6 text-gray-800 text-center"><%= @service.title %></h1>
 </header>
   <section class="rich-text-content mb-8">
     <%= @service.content %>
@@ -39,7 +39,8 @@
       <p class="col-span-2 text-center text-gray-500">No images available</p>
     <% end %>
   </section>
+  
+<p class="my-6">Check out our other <%= link_to 'services', services_path %> for more information.</p>
 </article>
 
-<p>Check out our other <%= link_to 'services', services_path %> for more information.</p>
 
