@@ -61,19 +61,11 @@ h2,h1{
 
     <!-- First Section -->
     <section class="flex flex-col lg:flex-row mx-4 lg:mx-12">
-            <% if current_page?(root_path) %>
+    <% if current_page?(root_path) %>
     <div class="w-full lg:w-4/5 p-4">
       <%= yield %>
     </div>
 
-    <div class="w-full lg:w-1/5 p-4 mt-4 lg:mt-0">
-      <div style="background-color:#d6d6d6;" class="p-4">
-        <h2 class="text-xl font-bold">IMPORTANT</h2>
-        <p>
-          Do not use hand sanitizer or any alcohol based cleaner on your ocular prosthesis, as it will crack the acrylic!
-        </p>
-      </div>
-    </div>
 <% else %>
     <div class="w-full  p-4">
       <%= yield %>
@@ -86,9 +78,6 @@ h2,h1{
       <% @sections.each do |section| %>
         <%= render_section(section) %>
       <% end %>
-      <%= render '/home/services', services: @services %>
-      <%= render '/home/testimonials' %>
-
     <% end %>
   </main>
   
