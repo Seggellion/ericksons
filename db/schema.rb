@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_27_221927) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_03_020801) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -108,6 +108,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_27_221927) do
     t.datetime "updated_at", null: false
     t.string "ip_address"
     t.string "country_code"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.string "location"
+    t.string "slug"
+    t.bigint "category_id"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_events_on_category_id"
   end
 
   create_table "media", force: :cascade do |t|
@@ -230,6 +243,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_27_221927) do
   add_foreign_key "articles", "users"
   add_foreign_key "blocks", "sections"
   add_foreign_key "comments", "users"
+  add_foreign_key "events", "categories"
   add_foreign_key "media", "users"
   add_foreign_key "menu_items", "menus"
   add_foreign_key "pages", "categories"

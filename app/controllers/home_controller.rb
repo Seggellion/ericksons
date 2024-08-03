@@ -7,6 +7,7 @@ class HomeController < ApplicationController
         @contact_message = ContactMessage.new
         @testimonials = Testimonial.by_category_name('home-page')
         @sections = Section.all
+        @events = Event.all
     end
 
 end

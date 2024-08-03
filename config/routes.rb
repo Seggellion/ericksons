@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy', as: :logout
   resources :services, only: [:index, :show]
   resources :contact_messages, only: [:new, :create]
+  resources :events, only: [:index, :show], param: :slug
 
   namespace :admin do
     resources :articles
@@ -36,6 +37,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :users
     resources :categories
+    resources :events
     resources :settings
     resources :services do
       member do
