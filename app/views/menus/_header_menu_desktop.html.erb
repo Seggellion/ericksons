@@ -35,7 +35,14 @@
    <% end %>
   <% end %>
  </ul>
- <div class="text-white">
+ <div class="text-white flex flex-row">
+ <!-- Google Review Button -->
+ <% if (google_places_id = Setting.get('google_places_id')) %>
+   <div class="ml-auto mr-4">
+     <%= link_to "Leave a Review", "https://search.google.com/local/writereview?placeid=#{google_places_id}", class: "bg-blue-500 text-white px-4 py-2 rounded", target: "_blank", rel: "noopener" %>
+   </div>
+ <% end %>
+
    <span><%= Setting.get('telephone') %></span>
  </div>
 </nav>
