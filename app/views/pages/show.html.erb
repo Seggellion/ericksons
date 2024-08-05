@@ -7,15 +7,18 @@
   <%= @page.content %>
 </section>
   
-  <% if @page.images.attached? %>
-  <% @page.images.each_with_index do |image, index| %>
-    <div class="flex justify-center">
-      <%= image_tag url_for(image), class: "w-full h-96 object-cover rounded-md", alt: "Page content image" %>
-    </div>
-  <% end %>
+<% if @page.images.attached? %>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+    <% @page.images.each_with_index do |image, index| %>
+      <div class="flex justify-center">
+        <%= image_tag url_for(image), class: "w-full h-96 object-cover rounded-md", alt: "Page content image" %>
+      </div>
+    <% end %>
+  </div>
 <% else %>
   <p class="col-span-2 text-center text-gray-500">No images available</p>
 <% end %>
+
 
 </article>
 
