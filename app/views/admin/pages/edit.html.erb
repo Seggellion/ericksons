@@ -83,7 +83,6 @@
             <%= form.label :template, class: 'block text-gray-700' %>
             <%= form.select :template, options_for_select(template_options, @page.template), include_blank: true, class: 'mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm' %>
 
-
             <div class="mb-4 flex justify-end">
             <%= form.submit "Save", class: "bg-blue-500 text-white px-4 py-2 rounded cursor-pointer" %>
           </div>

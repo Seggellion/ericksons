@@ -23,6 +23,14 @@ Rails.application.routes.draw do
   resources :services, only: [:index, :show]
   resources :contact_messages, only: [:new, :create]
   resources :events, only: [:index, :show], param: :slug
+  resources :products, only: [:index, :show], param: :handle do
+    post 'add_to_cart', on: :member
+  end
+
+  get '/cart', to: 'products#cart', as: :cart
+  get 'checkout', to: 'products#checkout'
+  delete 'cart/remove/:line_id', to: 'products#remove_from_cart', as: 'remove_from_cart'
+
 
   namespace :admin do
     resources :articles

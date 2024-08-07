@@ -56,7 +56,7 @@ gem 'sendgrid-ruby'
 # Custom Gems
 
 gem 'byebug'
-
+gem "shopify_api"
 gem 'sitemap_generator'
 
 group :development, :test do
