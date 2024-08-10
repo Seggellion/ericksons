@@ -24,7 +24,16 @@
             </a>
             <ul class="ml-4 mt-2 hidden" data-mobilemenu-target="submenu">
               <% menu_item.children.each do |child| %>
-                <li><%= link_to child.title, child.url, class: 'block' %></li>
+                <li>
+                <% if child.item_type == 'page' %>
+                 <%= link_to child.title, catch_all_page_path(child.url), class: 'block' %>      
+              <% elsif child.item_type == 'service' %>
+                <%= link_to child.title, service_path(child.url), class: 'block' %>
+              <% else %>
+                <%= link_to child.title, child.url || '#', class: 'block' %>
+              <% end %>
+                </li>
+
               <% end %>
             </ul>
           <% else %>
