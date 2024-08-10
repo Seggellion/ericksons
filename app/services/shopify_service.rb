@@ -78,7 +78,15 @@ class ShopifyService
         title
         handle
         descriptionHtml
-        variants(first: 3) {
+        images(first: 10) {
+          edges {
+            node {
+              src
+              altText
+            }
+          }
+        }
+        variants(first: 10) {
           edges {
             node {
               id
@@ -89,6 +97,7 @@ class ShopifyService
               }
               image {
                 src
+                altText
               }
             }
           }
@@ -96,15 +105,17 @@ class ShopifyService
       }
     }
   GRAPHQL
-
+  
     response = @client.query(query: query)
     
     if response.body["errors"].present?
       raise "GraphQL Error: #{response.body['errors']}"
     end
-
+  
     response.body["data"]["productByHandle"]
   end
+
+  
   def create_cart
     query = <<-GRAPHQL
       mutation {

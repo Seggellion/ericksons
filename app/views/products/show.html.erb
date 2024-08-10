@@ -2,14 +2,19 @@
   <div class="flex flex-col lg:flex-row">
     <!-- Left side: Product Image -->
     <div class="w-full lg:w-1/2 mb-8 lg:mb-0">
-      <% if @product["variants"]["edges"].first["node"]["image"] %>
-        <%= image_tag @product["variants"]["edges"].first["node"]["image"]["src"], alt: @product["title"], class: "w-full h-auto object-cover rounded-md shadow-lg" %>
-      <% else %>
-        <div class="w-full h-64 bg-gray-200 rounded-md flex items-center justify-center">
-          <span class="text-gray-500">No Image Available</span>
+    <% @product["images"]["edges"].each do |image| %>
+      <div class="mb-4">
+        <%= image_tag image["node"]["src"], alt: image["node"]["altText"], class: "w-full h-auto object-cover rounded-md shadow-lg" %>
+      </div>
+    <% end %>
+    <% @product["variants"]["edges"].each do |variant| %>
+      <% if variant["node"]["image"] %>
+        <div class="mb-4">
+          <%= image_tag variant["node"]["image"]["src"], alt: variant["node"]["altText"], class: "w-full h-auto object-cover rounded-md shadow-lg" %>
         </div>
       <% end %>
-    </div>
+    <% end %>
+  </div>
 
     <!-- Right side: Product Details -->
     <div class="w-full lg:w-1/2 lg:pl-8">
@@ -39,3 +44,9 @@
     </div>
   </div>
 </div>
+
+<style>
+#variant_id{
+  padding:10px;
+}
+</style>
