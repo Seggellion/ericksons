@@ -1,19 +1,35 @@
 module ApplicationHelper
   def meta_title
-    content_for?(:meta_title) ? content_for(:meta_title) : @service&.title || @page&.title || Setting.get('site-title') || "Default Title"
+    if content_for?(:meta_title)
+      content_for(:meta_title)
+    elsif @service.is_a?(ActiveRecord::Relation)
+      "List of Services" # Adjust this as needed for other models
+    elsif @service&.title.present?
+      @service.title
+    elsif @page&.title.present?
+      @page.title
+    else
+      Setting.get('site-title') || "Default Title"
+    end
   end
   
   def canonical_url
     request.original_url
  end  
 
-  def meta_description
-    if content_for?(:meta_description)
-      content_for(:meta_description)
-    else
-      @service&.meta_description || @page&.meta_description || extract_description(@service&.content || @page&.content) || Setting.get('website-description')
-    end
-  end      
+ def meta_description
+  if content_for?(:meta_description)
+    content_for(:meta_description)
+  elsif @service.is_a?(ActiveRecord::Relation)
+    "A comprehensive list of our services." # Adjust this as needed for your context
+  elsif @service&.meta_description.present?
+    @service.meta_description
+  elsif @page&.meta_description.present?
+    @page.meta_description
+  else
+    extract_description(@service&.content || @page&.content) || Setting.get('website-description')
+  end
+end 
 
   def unread_messages_count
     ContactMessage.unread_count
@@ -54,12 +70,26 @@ module ApplicationHelper
     request.original_url
   end
 
-  def og_image    
+  def og_image
     if content_for?(:og_image)
       content_for(:og_image)
-    else      
-      seo_image = url_for(Setting.get('seo-image'))      
-      @service&.images&.first&.url || @page&.images&.first&.url || seo_image
+    else
+      seo_image = url_for(Setting.get('seo-image'))
+
+      if @service.is_a?(ActiveRecord::Relation)
+        seo_image # Use a fallback image for the collection (e.g., a default list image)
+      else
+        service_image = @service&.images&.first
+        page_image = @page&.images&.first
+
+        if service_image.present?
+          url_for(service_image)
+        elsif page_image.present?
+          url_for(page_image)
+        else
+          seo_image
+        end
+      end
     end
   end
 
@@ -74,8 +104,14 @@ module ApplicationHelper
   def meta_keywords
     if content_for?(:meta_keywords)
       content_for(:meta_keywords)
+    elsif @service.is_a?(ActiveRecord::Relation)
+      "services, list, offerings" # Adjust this as needed for your context
+    elsif @service&.meta_keywords.present?
+      @service.meta_keywords
+    elsif @page&.meta_keywords.present?
+      @page.meta_keywords
     else
-      @page&.meta_keywords ||  @service&.meta_keywords || extract_keywords(@service&.content || @page&.content) || Setting.get('default-keywords')
+      extract_keywords(@service&.content || @page&.content) || Setting.get('default-keywords')
     end
   end
       

@@ -42,7 +42,7 @@
    </div>
  <% end %>
 
-   <span><%= Setting.get('telephone') %></span>
+     <%= link_to Setting.get('telephone'), "tel:#{Setting.get('telephone').gsub(/\s+/, '')}", title: "Call Us", aria_label: "Telephone Number #{Setting.get('telephone')}" %>
  </div>
 </nav>
 </div>
