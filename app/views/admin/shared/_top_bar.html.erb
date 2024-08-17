@@ -1,7 +1,7 @@
 <!-- Top-bar -->
 <div class="bg-blue-900 text-white p-1 flex justify-between items-center">
   <div class="flex items-center space-x-4">
-    <a href="/" class="text-white text-sm font-bold hover:underline px-1">View Site</a>
+    <a href="/" target="_blank" class="text-white text-sm font-bold hover:underline px-1">View Site</a>
     <a href="#" class="relative text-white">
       <i class="fas fa-comments"></i> <span class="ml-2"><%= link_to 'Messages', admin_contact_messages_path, class: '' %></span>
       <span class="absolute top-0 right-0 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"><%= ContactMessage.unread_count %></span>
