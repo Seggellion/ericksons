@@ -18,6 +18,7 @@ module Admin
       end
   
       def edit
+      
         @article = Article.find_by_slug(params[:id])
       end
   
@@ -40,7 +41,7 @@ module Admin
       private
   
       def article_params
-        params.require(:article).permit(:title, :content, :meta_description, :meta_keywords).merge(user_id: 1)
+        params.require(:article).permit(:title, :content, :meta_description, :meta_keywords).merge(user_id: current_user.id)
       end
       
     end

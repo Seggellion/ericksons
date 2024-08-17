@@ -8,6 +8,7 @@ class HomeController < ApplicationController
         @testimonials = Testimonial.by_category_name('home-page')
         @sections = Section.all
         @events = Event.all
+        
     end
 
 end

@@ -53,7 +53,7 @@ module Admin
       end
 
       def page_params
-        params.require(:page).permit(:title, :content, :category_id, :meta_description, :meta_keywords, :template, images: [], remove_images: []).merge(user_id: 1)
+        params.require(:page).permit(:title, :content, :category_id, :meta_description, :meta_keywords, :template, images: [], remove_images: []).merge(user_id: current_user.id)
 
       end
     end

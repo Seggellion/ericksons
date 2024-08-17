@@ -1,0 +1,67 @@
+<!-- app/views/admin/users/index.html.erb -->
+<div class="container mx-auto my-8">
+  <h1 class="text-2xl font-bold mb-6">Users</h1>
+
+  <div class="bg-white shadow overflow-hidden sm:rounded-lg">
+    <table class="min-w-full bg-white">
+      <thead>
+        <tr>
+          <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+            First Name
+          </th>
+          <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+            Name
+          </th>
+          <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+            Email
+          </th>
+          <th class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+            Role
+          </th>
+          <th class="px-6 py-3 border-b border-gray-200 bg-gray-50"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="flex items-center">
+                <% if user.discord_avatar.present? %>
+                  <img class="h-10 w-10 rounded-full" src="<%= user.discord_avatar %>" alt="<%= user.first_name %>">
+                <% else %>
+                  <span class="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center">
+                    <svg class="h-6 w-6 text-gray-400" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                      <path d="M5.121 11a8.96 8.96 0 011.414-3.536M16.95 7.464A8.96 8.96 0 0118.364 11m-4.95-4.95A8.96 8.96 0 0111 5.121M16.95 16.95A8.96 8.96 0 0111 18.364m-4.95-4.95A8.96 8.96 0 015.121 11M11 18.364A8.96 8.96 0 0111 11m0 0A8.96 8.96 0 0111 5.121M18.364 11A8.96 8.96 0 0111 11"></path>
+                    </svg>
+                  </span>
+                <% end %>
+                <div class="ml-4">
+                  <div class="text-sm leading-5 font-medium text-gray-900">
+                    <%= user.first_name %>
+                  </div>
+                  <div class="text-sm leading-5 text-gray-500">
+                    <%= user.email %>
+                  </div>
+                </div>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-900"><%= user.first_name %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-900"><%= user.email %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              <div class="text-sm leading-5 text-gray-900">
+                <%= user.user_type == 0 ? "Administrator" : "User" %>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap text-right text-sm leading-5 font-medium">
+              <%= link_to 'Edit', edit_admin_user_path(user), class: 'text-indigo-600 hover:text-indigo-900' %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

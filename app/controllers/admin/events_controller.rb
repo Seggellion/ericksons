@@ -22,7 +22,6 @@ module Admin
       def edit; end
   
       def update
-        byebug
         if @event.update(event_params)
           redirect_to admin_events_path, notice: 'Event was successfully updated.'
         else

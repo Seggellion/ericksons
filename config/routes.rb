@@ -11,15 +11,23 @@ Rails.application.routes.draw do
   get 'menus/update'
   get 'menus/destroy'
 
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
+
+  # Define the Discord OAuth routes
   get '/auth/:provider/callback', to: 'sessions#create'
-  get '/auth/failure', to: 'sessions#failure'
-  delete '/logout', to: 'sessions#destroy', as: :logout
+  get '/auth/failure', to: redirect('/')
+  get '/discord_login', to: redirect('/auth/discord'), as: 'discord_login'
+
+  delete '/logout', to: 'sessions#destroy', as: 'logout'
+  # Route to your custom login page
+  get '/login', to: 'sessions#new', as: 'login' 
+  
   resources :services, only: [:index, :show]
   resources :contact_messages, only: [:new, :create]
   resources :events, only: [:index, :show], param: :slug
@@ -80,9 +88,8 @@ Rails.application.routes.draw do
 
     # Catch-all route for pages based on slug, excluding specific paths
     get '/:slug', to: 'pages#show', constraints: lambda { |req|
-      !req.path.starts_with?('/services', '/admin', '/pages')
+      !req.path.starts_with?('/services', '/admin', '/pages', '/auth', '/logout')
     }, as: :catch_all_page
-  
 
     get 'pages', to: 'pages#index'
     get 'footer', to: 'menus#footer'

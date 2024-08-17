@@ -47,6 +47,12 @@ rails db:create
 rails db:migrate
 ```
 
+3.5. Start the database:
+
+```
+service postgresql start
+```
+
 4. Install Active Storage:
 
 ```bash

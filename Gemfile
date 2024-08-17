@@ -52,6 +52,10 @@ gem "image_processing", "~> 1.2"
 gem 'acts_as_list'
 gem 'friendly_id'
 gem 'sendgrid-ruby'
+gem 'omniauth-discord'
+gem 'omniauth'
+
+gem 'omniauth-rails_csrf_protection'
 
 # Custom Gems
 
