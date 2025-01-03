@@ -141,6 +141,29 @@ git push heroku main
 heroku run rails db:migrate
 ```
 
+5. Create setting for oauth:
+
+   ```
+   # Discord:
+<Setting:
+ key: "discord_client_id",
+ value: "clientstringwhatever",
+ setting_type: "text">
+ <Setting:
+ key: "discord_client_id",
+ value: "clientstringwhatever",
+ setting_type: "text">
+ # Microsoft:
+ <Setting:
+ key: "microsoft_client_id",
+ value: "secretstringwhatever",
+ setting_type: "text">
+  <Setting:
+ key: "microsoft_client_secret",
+ value: "secretstringwhatever",
+ setting_type: "text">
+   ```
+
 License
 
 This project is licensed under the MIT License. See the LICENSE file for details.
